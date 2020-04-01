@@ -1,13 +1,11 @@
 let eqArrays = function(arr1, arr2) {
-  for (let i = 0; i < arr1.length; i++) {
-    if (arr1[i] !== arr2[i]) {
-      return false;
-    }
+  if (JSON.stringify(arr1) === JSON.stringify(arr2)) {
+    return true;
+  } else {
+    return false;
   }
-  return true;
 };
   
-
 let assertArraysEqual = function(arr1, arr2) {
   if (!eqArrays(arr1, arr2)) {
     console.log(`🛑🛑🛑Assertion Failed: ${arr1} !== ${arr2}`);
