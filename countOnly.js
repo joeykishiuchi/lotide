@@ -7,19 +7,17 @@ const assertEqual = function(actual, expected) {
 };
 
 let countOnly = function(allItems, itemsToCount) {
-  let totalCount = {};
-  for (let item in itemsToCount) {
-    let count = 0;
-    for (let all of allItems) {
-      if (all === item && itemsToCount[item]) {
-        count++;
+  let result = {};
+  for (let item of allItems) {
+    if (itemsToCount[item]) {
+      if (result[item]) {
+        result[item] += 1;
+      } else {
+        result[item] = 1;
       }
     }
-    if (count > 0) {
-      totalCount[item] = count;
-    }
   }
-  return totalCount;
+  return result;
 };
 
 const firstNames = ["Karl", "Salima", "Agouhanna", "Fang", "Kavith", "Jason", "Salima", "Fang", "Joe"];
