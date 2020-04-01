@@ -1,8 +1,8 @@
-let eqArrays = function(arr1, arr2) {
+const eqArrays = function(arr1, arr2) {
     return (JSON.stringify(arr1) === JSON.stringify(arr2));
 };
     
-let assertArraysEqual = function(arr1, arr2) {
+const assertArraysEqual = function(arr1, arr2) {
   if (!eqArrays(arr1, arr2)) {
     console.log(`🛑🛑🛑Assertion Failed: ${arr1} !== ${arr2}`);
   } else {
@@ -10,7 +10,7 @@ let assertArraysEqual = function(arr1, arr2) {
   }
 };
 
-let without = function(source, itemsToRemove) {
+const without = function(source, itemsToRemove) {
   let outcomeArr = [];
   for (let src of source) {
     if (!itemsToRemove.includes(src)) {

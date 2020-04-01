@@ -1,8 +1,8 @@
-let eqArrays = function(arr1, arr2) {
+const eqArrays = function(arr1, arr2) {
   return (JSON.stringify(arr1) === JSON.stringify(arr2));
 };
     
-let assertArraysEqual = function(arr1, arr2) {
+const assertArraysEqual = function(arr1, arr2) {
   if (!eqArrays(arr1, arr2)) {
     console.log(`🛑🛑🛑Assertion Failed: ${arr1} !== ${arr2}`);
   } else {
@@ -10,7 +10,7 @@ let assertArraysEqual = function(arr1, arr2) {
   }
 };
 
-let flatten = function(arrayNest) {
+const flatten = function(arrayNest) {
   let flatArray = [];
   for (let array of arrayNest) {
     if (Array.isArray(array)) {
