@@ -10,6 +10,7 @@ const assertArraysEqual = function(arr1, arr2) {
   }
 };
 
+// Assertion Test ---------------
 const firstArray = [1, 2, 3];
 const secondArray = [1, 2, '3'];
 assertArraysEqual(firstArray, secondArray);
