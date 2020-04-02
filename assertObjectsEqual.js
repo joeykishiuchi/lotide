@@ -30,6 +30,9 @@ const eqObjects = function(object1, object2) {
   }
 };
 
+let li = new String('hello')
+console.log(li);
+
 const assertObjectsEqual = function(object1, object2) {
   const inspect = require('util').inspect;
   if (eqObjects(object1, object2)) {
