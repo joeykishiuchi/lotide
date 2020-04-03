@@ -9,7 +9,11 @@ const assertEqual = function(actual, expected) {
 const eqArrays = function(arr1, arr2) {
   if (arr1.length === arr2.length) {
     for (let i = 0; i < arr1.length; i++) {
-      if (arr1[i] !== arr2[i]) {
+      if (Array.isArray(arr1[i]) && Array.isArray(arr2[i])){
+        if (!eqArrays(arr1[i], arr2[i])) {
+          return false;
+        }
+      } else if (arr1[i] !== arr2[i]) {
         return false;
       }
     }
@@ -17,13 +21,6 @@ const eqArrays = function(arr1, arr2) {
   } else {
       return false;
   }
-  
-//  Seperate method using object shortcut
-//   if (JSON.stringify(arr1) === JSON.stringify(arr2)) {
-//     return true;
-//   } else {
-//     return false;
-//   }
 };
 
 assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true); // => true
@@ -35,3 +32,5 @@ assertEqual(eqArrays(["1", "2", "3"], ["1", "2", 3]), false); // => false
 assertEqual(eqArrays(["1", "2", "3", "4"], ["1", "2", "3"]), false); // => false
 assertEqual(eqArrays(["1", "2", "3"], ["1", "2", "3", "4"]), false); // => false
 
+assertEqual(eqArrays(["1", ["2", ["3", ["4"]]],[]], ["1", ["2", ["3", ["4"]]],[]]), true); // => true
+assertEqual(eqArrays(["1", "2", [["3"],"4"]], ["1", "2", "3", "4"]), false); // => false
