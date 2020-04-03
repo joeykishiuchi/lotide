@@ -24,9 +24,17 @@ const eqObjects = function(object1, object2) {
   const object2Keys = Object.keys(object2);
   if (object1Keys.length === object2Keys.length) { // Are the objects the same length
     for (let key of object1Keys) { //iterate through object1's keys
-      if (Array.isArray(object1[key]) && Array.isArray(object2[key])) { //are both object's values at the key an array
-        if (!eqArrays(object1[key], object2[key])) {
+      if (typeof object1[key] === 'object' && typeof object2[key] === 'object') { //are both values at the key an array       
+        if (Array.isArray(object1[key]) && Array.isArray(object2[key])) {
+          if (!eqArrays(object1[key], object2[key])) {
+            return false;
+          }
+        } else if (Array.isArray(object1[key]) || Array.isArray(object2[key])){
           return false;
+        } else {
+          if (!eqObjects(object1[key], object2[key])) {
+            return false;
+          }
         }
       } else if (object1[key] !== object2[key]) {
         return false;
@@ -50,3 +58,7 @@ assertEqual(eqObjects(ab, abc), false);
 assertEqual(eqObjects(ab, cd), false);
 assertEqual(eqObjects(cd, dc), true);
 assertEqual(eqObjects(cd, cd2), false);
+
+assertEqual(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }), true) // => true
+assertEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }), false) // => false
+assertEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 }), false) // => false
