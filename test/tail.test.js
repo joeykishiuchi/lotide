@@ -1,8 +1,25 @@
 const tail = require('../tail');
-const assertEqual = require('../assertEqual');
+const assert = require('chai').assert;
 
-const result = tail(["Hello", "Lighthouse", "Labs"]);
-assertEqual(result, ["Lighthouse", "Labs"]); // => will always fail!  
-assertEqual(result.length, 2); // ensure we get back two elements
-assertEqual(result[0], "Lighthouse"); // ensure first element is "Lighthouse"
-assertEqual(result[1], "Labs"); // ensure second element is "Labs"
+describe ('#tail',() => {
+  it ('returns "[2, 3]" for "[1, 2, 3]"', () => {
+    const actual = tail([1, 2, 3]);
+    const expected = [2, 3];
+    assert.deepEqual(actual, expected);
+  });
+  it('returns "["Lighthouse", "Labs"]" for "["Hello", "Lighthouse", "Labs"]"', () => {
+    const actual = tail(["Hello", "Lighthouse", "Labs"]);
+    const expected = ["Lighthouse", "Labs"];
+    assert.deepEqual(actual, expected);
+  });
+  it('returns "[1, 2]" for "[2]"', () => {
+    const actual = tail([1, 2]);
+    const expected = [2];
+    assert.deepEqual(actual, expected);
+  });
+  it('returns "[]" for "[1]"', () => {
+    const actual = tail([1]);
+    const expected = [];
+    assert.deepEqual(actual, expected);
+  });
+});
