@@ -38,3 +38,5 @@ The following functions are currently implemented:
 * map(array, callback): Iterates through a given array and performs the callback function when it returns truthy
 * takeUntil(array, callback): Returns an array starting from the first element until the callback returns truthy
 * without(array, values): removes values from a given array and returns new array
+* eqArrays(arr1, arr2): compares two arrays recursively and returns true if they are identical
+* ewObjects (obj1, obj2): compares two objects recursively and returns true if they are identical
